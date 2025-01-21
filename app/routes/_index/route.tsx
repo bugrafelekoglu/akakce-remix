@@ -2,8 +2,12 @@ import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Akakçe Case Study" },
+    {
+      name: "description",
+      content:
+        "This project is a case study prepared for the Akakçe interview process with using Remix and React.",
+    },
   ];
 };
 

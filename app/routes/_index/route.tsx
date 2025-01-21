@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui";
 import type { TProductListItem } from "@/types";
 
 import { loader } from "./loader.server";

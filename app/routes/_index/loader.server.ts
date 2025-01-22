@@ -1,13 +1,14 @@
-import { TProductListItem } from "@/types";
-
-type TResponseData = {
-  horizontalProductList: TProductListItem[];
-  productList: TProductListItem[];
-  nextUrl: string;
-};
+import { ProductListService } from "@/services";
 
 export const loader = async () => {
-  const response = await fetch("https://mock.akakce.dev/page.json");
-  const data: TResponseData = await response.json();
-  return data;
+  const service = new ProductListService();
+  const horizontalProductList = await service.getHorizontalProductList();
+  const productListPaginated = await service.getProductListPaginated(1);
+
+  if (!horizontalProductList)
+    throw new Error("Horizontal Product List not found");
+  if (!productListPaginated)
+    throw new Error("Paginated Product List not found");
+
+  return { horizontalProductList, productListPaginated };
 };

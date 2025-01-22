@@ -28,7 +28,8 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  const { horizontalProductList, productList } = useLoaderData<TIndexLoader>();
+  const { horizontalProductList, productListPaginated } =
+    useLoaderData<TIndexLoader>();
 
   const Product = ({ product }: { product: TProductListItem }) => (
     <Link to={`/product/${product.code}`} key={product.code}>
@@ -59,7 +60,7 @@ export default function Index() {
         ))}
       </div>
       <div className="py-8 px-8 mx-auto bg-white flex flex-row">
-        {productList.map((product) => (
+        {productListPaginated.productList.map((product) => (
           <Product product={product} key={product.code} />
         ))}
       </div>

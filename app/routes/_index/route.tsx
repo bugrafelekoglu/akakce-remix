@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useSearchParams } from "@remix-run/react";
 
 import {
   Card,
@@ -8,7 +8,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui";
+import { Pagination } from "@/components";
+import { getPageFromUrl } from "@/lib/utils";
 import type { TProductListItem } from "@/types";
 
 import { loader } from "./loader.server";
@@ -28,7 +30,11 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  const { horizontalProductList, productList } = useLoaderData<TIndexLoader>();
+  const [searchParams] = useSearchParams();
+  const currentPage = getPageFromUrl(searchParams);
+
+  const { horizontalProductList, productListPaginated } =
+    useLoaderData<TIndexLoader>();
 
   const Product = ({ product }: { product: TProductListItem }) => (
     <Link to={`/product/${product.code}`} key={product.code}>
@@ -59,9 +65,16 @@ export default function Index() {
         ))}
       </div>
       <div className="py-8 px-8 mx-auto bg-white flex flex-row">
-        {productList.map((product) => (
+        {productListPaginated.productList.map((product) => (
           <Product product={product} key={product.code} />
         ))}
+      </div>
+      <div className="py-8 px-8 mx-auto bg-white flex flex-row gap-8">
+        <Pagination
+          currentPage={currentPage}
+          showPrevious={currentPage > 1}
+          showNext={productListPaginated.nextUrl !== ""}
+        />
       </div>
     </div>
   );

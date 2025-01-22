@@ -1,13 +1,20 @@
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import { type LoaderFunctionArgs } from "@remix-run/node";
 
-import { TProductDetail } from "@/types";
-
-type TResponseData = TProductDetail;
+import { ProductService } from "@/services";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const response = await fetch(
-    `https://mock.akakce.dev/product${params.productId}.json`
-  );
-  const data: TResponseData = await response.json();
-  return data;
+  const { productId } = params;
+
+  if (!productId) {
+    throw new Error("Product ID is required");
+  }
+
+  const service = new ProductService();
+  const productDetails = await service.getProductDetails(productId);
+
+  if (!productDetails) {
+    throw new Error("Product not found");
+  }
+
+  return productDetails;
 };

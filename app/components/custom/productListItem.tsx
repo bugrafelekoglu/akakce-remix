@@ -42,10 +42,10 @@ export const ProductListItem: FC<ProductListItemProps> = ({
           />
         </LinkWrapper>
         <div className="rounded-full bg-red-600 w-10 h-10 absolute top-0 right-0 flex flex-row items-center justify-center">
-          <p className="text-white text-sm font-bold flex flex-row items-baseline">
-            <p className="text-[10px] pr-[2px]">%</p>
+          <span className="text-white text-sm font-bold flex flex-row items-baseline">
+            <span className="text-[10px] pr-[2px]">%</span>
             {product.dropRatio}
-          </p>
+          </span>
         </div>
       </div>
       <Card className="border-none shadow-none">
@@ -66,14 +66,14 @@ export const ProductListItem: FC<ProductListItemProps> = ({
             </span>
           </div>
           <div className="flex flex-row items-center">
-            <p className="text-gray-400 text-xs">
+            <span className="text-gray-400 text-xs">
               {product.countOfPrices} satıcı
-            </p>
+            </span>
             <ChevronRight className="w-4 h-4 text-gray-400" />
           </div>
         </CardContent>
         <CardFooter className="text-gray-400 text-[13px] font-bold">
-          <p>{product.followCount}+ takip</p>
+          <span>{product.followCount}+ takip</span>
         </CardFooter>
       </Card>
     </Card>

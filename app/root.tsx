@@ -9,7 +9,9 @@ import type { LinksFunction } from "@remix-run/node";
 
 import styles from "./tailwind.css?url";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles, as: "style" },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,7 +23,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <main className="flex flex-col items-center bg-slate-300 h-screen gap-12">
+          {children}
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>

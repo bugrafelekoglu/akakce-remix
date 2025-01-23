@@ -14,7 +14,7 @@ export const PriceDropBubble: FC<PriceDropBubbleProps> = ({
   return (
     <div
       className={cn(
-        "rounded-full bg-red-600 w-10 h-10 flex flex-row items-center justify-center",
+        "rounded-full bg-red-500 w-10 h-10 flex flex-row items-center justify-center",
         className
       )}
       {...props}

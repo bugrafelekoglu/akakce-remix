@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui";
 import { TProductListItem } from "@/services";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
+import { PriceDropBubble } from "./priceDropBubble";
 
 type ProductListItemProps = {
   product: TProductListItem;
@@ -41,12 +42,10 @@ export const ProductListItem: FC<ProductListItemProps> = ({
             className="max-h-36 max-w-36"
           />
         </LinkWrapper>
-        <div className="rounded-full bg-red-600 w-10 h-10 absolute top-0 right-0 flex flex-row items-center justify-center">
-          <span className="text-white text-sm font-bold flex flex-row items-baseline">
-            <span className="text-[10px] pr-[2px]">%</span>
-            {product.dropRatio}
-          </span>
-        </div>
+        <PriceDropBubble
+          dropRatio={product.dropRatio}
+          className="absolute top-0 right-0"
+        />
       </div>
       <Card className="border-none shadow-none">
         <CardHeader>

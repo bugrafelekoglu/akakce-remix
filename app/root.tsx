@@ -23,7 +23,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main className="flex flex-col items-center bg-slate-300 h-screen gap-12">
+        <main className="flex flex-col items-center h-screen gap-12">
           {children}
         </main>
         <ScrollRestoration />

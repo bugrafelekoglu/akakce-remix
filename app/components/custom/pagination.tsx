@@ -1,16 +1,16 @@
-import React from "react";
+import { HTMLAttributes, forwardRef } from "react";
 import { Link } from "@remix-run/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-type PaginationProps = React.HTMLAttributes<HTMLDivElement> & {
+type PaginationProps = HTMLAttributes<HTMLDivElement> & {
   showPrevious: boolean;
   currentPage: number;
   showNext: boolean;
 };
 
-export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
+export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   ({ className, currentPage, showNext, showPrevious, ...props }, ref) => {
     return (
       <div

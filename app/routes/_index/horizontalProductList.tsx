@@ -55,7 +55,7 @@ export const HorizontalProductList: FC<THorizontalProductListProps> = ({
     >
       <Carousel
         setApi={setApi}
-        className="max-w-sm"
+        className="max-w-md"
         opts={{ align: "center", slidesToScroll: 1 }}
       >
         <CarouselContent>

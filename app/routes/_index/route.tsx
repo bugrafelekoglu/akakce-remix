@@ -40,6 +40,7 @@ export default function Index() {
           {productListPaginated.productList.map((product) => (
             <ProductListItem
               listDirection="vertical"
+              containerClassName="w-56"
               product={product}
               key={product.code}
             />

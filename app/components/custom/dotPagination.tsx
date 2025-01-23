@@ -16,7 +16,7 @@ export const DotPagination: FC<DotPaginationProps> = ({
   ...props
 }) => {
   return (
-    <div className={cn("flex flex-row gap-4", className)} {...props}>
+    <div className={cn("flex flex-row gap-2", className)} {...props}>
       {Array.from({ length }).map((_, index) => (
         <button
           key={index}

@@ -13,13 +13,13 @@ import { DotPagination, ProductListItem } from "@/components/custom";
 import type { TProductListItem } from "@/services";
 import { cn } from "@/lib/utils";
 
-export type THorizontalProductListProps = {
+export type TProductListHorizontalProps = {
   productList: TProductListItem[];
   showButtons?: boolean;
   containerClassName?: string;
 };
 
-export const HorizontalProductList: FC<THorizontalProductListProps> = ({
+export const ProductListHorizontal: FC<TProductListHorizontalProps> = ({
   productList,
   showButtons = false,
   containerClassName,

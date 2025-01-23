@@ -4,7 +4,7 @@ import { useLoaderData, useSearchParams } from "@remix-run/react";
 import { Pagination, ProductListItem } from "@/components/custom";
 import { getPageFromUrl } from "@/lib/utils";
 
-import { HorizontalProductList } from "./horizontalProductList";
+import { ProductListHorizontal } from "./productListHorizontal";
 import { loader } from "./loader.server";
 
 export { loader };
@@ -26,13 +26,13 @@ export default function Index() {
   const [searchParams] = useSearchParams();
   const currentPage = getPageFromUrl(searchParams);
 
-  const { horizontalProductList, productListPaginated } =
+  const { productListHorizontal, productListPaginated } =
     useLoaderData<TIndexLoader>();
 
   return (
     <>
-      <HorizontalProductList
-        productList={horizontalProductList}
+      <ProductListHorizontal
+        productList={productListHorizontal}
         containerClassName="mt-8"
       />
       <div className="py-8 px-8 mx-auto items-center bg-white flex flex-col gap-4">

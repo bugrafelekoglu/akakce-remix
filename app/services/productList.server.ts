@@ -32,7 +32,7 @@ export class ProductListService {
     }
   }
 
-  async getHorizontalProductList(): Promise<TProductListItem[]> {
+  async getProductListHorizontal(): Promise<TProductListItem[]> {
     const data = await this.fetchProductList();
     return data.horizontalProductList;
   }

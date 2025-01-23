@@ -64,7 +64,7 @@ export const HorizontalProductList: FC<THorizontalProductListProps> = ({
               <ProductListItem
                 product={product}
                 listDirection="horizontal"
-                containerClassName="m-2"
+                containerClassName="m-2 border-none shadow-none"
               />
             </CarouselItem>
           ))}

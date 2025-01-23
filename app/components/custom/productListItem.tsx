@@ -55,7 +55,16 @@ export const ProductListItem: FC<ProductListItemProps> = ({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-xl font-bold">{product.price} TL</p>
+          <div className="text-xl font-bold flex items-baseline">
+            {new Intl.NumberFormat("tr-TR", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }).format(Math.floor(product.price))}
+            <span className="text-sm">
+              ,{String(Math.round((product.price % 1) * 100)).padStart(2, "0")}{" "}
+              TL
+            </span>
+          </div>
           <div className="flex flex-row items-center">
             <p className="text-gray-400 text-xs">
               {product.countOfPrices} satıcı

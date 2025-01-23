@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { type CarouselApi } from "@/components/ui/carousel";
 
 import {
   Carousel,
@@ -8,21 +7,29 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui";
+import { type CarouselApi } from "@/components/ui";
 import { DotPagination, ProductListItem } from "@/components/custom";
 
 import type { TProductListItem } from "@/services";
+import { cn } from "@/lib/utils";
 
 export type THorizontalProductListProps = {
   productList: TProductListItem[];
   showButtons?: boolean;
+  containerClassName?: string;
 };
 
 export const HorizontalProductList: FC<THorizontalProductListProps> = ({
   productList,
   showButtons = false,
+  containerClassName,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
+
+  const handlePressIndex = (index: number) => {
+    api?.scrollTo(index);
+  };
 
   // This is the suggested way to get the current index of the carousel from shadcn docs
   useEffect(() => {
@@ -40,10 +47,15 @@ export const HorizontalProductList: FC<THorizontalProductListProps> = ({
   }, [api]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center gap-2",
+        containerClassName
+      )}
+    >
       <Carousel
         setApi={setApi}
-        className="max-w-sm w-full"
+        className="max-w-sm"
         opts={{ align: "center", slidesToScroll: 1 }}
       >
         <CarouselContent>
@@ -52,7 +64,7 @@ export const HorizontalProductList: FC<THorizontalProductListProps> = ({
               <ProductListItem
                 product={product}
                 listDirection="horizontal"
-                cardClassName="m-2"
+                containerClassName="m-2"
               />
             </CarouselItem>
           ))}
@@ -64,7 +76,11 @@ export const HorizontalProductList: FC<THorizontalProductListProps> = ({
           </>
         )}
       </Carousel>
-      <DotPagination currentIndex={currentIndex} length={productList.length} />
+      <DotPagination
+        currentIndex={currentIndex}
+        length={productList.length}
+        onPressIndex={handlePressIndex}
+      />
     </div>
   );
 };

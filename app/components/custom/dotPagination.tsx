@@ -5,19 +5,23 @@ import { cn } from "@/lib/utils";
 type DotPaginationProps = HTMLAttributes<HTMLDivElement> & {
   currentIndex: number;
   length: number;
+  onPressIndex: (index: number) => void;
 };
 
 export const DotPagination: FC<DotPaginationProps> = ({
   currentIndex,
   length,
+  onPressIndex,
   className,
   ...props
 }) => {
   return (
     <div className={cn("flex flex-row gap-4", className)} {...props}>
       {Array.from({ length }).map((_, index) => (
-        <div
+        <button
           key={index}
+          disabled={index === currentIndex}
+          onClick={() => onPressIndex(index)}
           className={cn("w-2 h-2 rounded-full", {
             "bg-foreground": index === currentIndex,
             "bg-gray-300": index !== currentIndex,

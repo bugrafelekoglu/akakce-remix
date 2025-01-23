@@ -31,7 +31,10 @@ export default function Index() {
 
   return (
     <>
-      <HorizontalProductList productList={horizontalProductList} />
+      <HorizontalProductList
+        productList={horizontalProductList}
+        containerClassName="mt-8"
+      />
       <div className="py-8 px-8 mx-auto items-center bg-white flex flex-col gap-4">
         <div className="flex flex-row gap-8">
           {productListPaginated.productList.map((product) => (

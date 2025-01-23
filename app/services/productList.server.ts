@@ -1,4 +1,4 @@
-import { TProductListItem } from "@/types";
+import { TProductListItem } from './types'
 
 type TProductListResponse = {
   horizontalProductList: TProductListItem[];

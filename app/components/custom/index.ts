@@ -6,4 +6,5 @@ export * from "./navBar";
 export * from "./priceDropBubble";
 export * from "./priceTag";
 export * from "./productListItem";
+export * from "./storageOptions";
 export * from "./rating";

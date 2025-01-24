@@ -1,4 +1,4 @@
-import { TProductListItem } from "@/types";
+import { TProductListItem } from "./types";
 
 type TProductListResponse = {
   horizontalProductList: TProductListItem[];
@@ -9,8 +9,11 @@ type TProductListResponse = {
 type TProductListPaginated = {
   productList: TProductListItem[];
   nextUrl: string;
+  pageCount: number;
   page: number;
 };
+
+const PRODUCT_LIST_PAGINATION_PAGE_COUNT = 3;
 
 export class ProductListService {
   // IMPROVEMENT: Data can be cached
@@ -32,13 +35,18 @@ export class ProductListService {
     }
   }
 
-  async getHorizontalProductList(): Promise<TProductListItem[]> {
+  async getProductListHorizontal(): Promise<TProductListItem[]> {
     const data = await this.fetchProductList();
     return data.horizontalProductList;
   }
 
   async getProductListPaginated(page: number): Promise<TProductListPaginated> {
     const data = await this.fetchProductList(page);
-    return { productList: data.productList, nextUrl: data.nextUrl, page };
+    return {
+      productList: data.productList,
+      nextUrl: data.nextUrl,
+      pageCount: PRODUCT_LIST_PAGINATION_PAGE_COUNT,
+      page,
+    };
   }
 }

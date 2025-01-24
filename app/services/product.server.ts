@@ -1,4 +1,4 @@
-import { TProductDetail } from "@/types";
+import { TProductDetail } from "./types";
 
 type TProductDetailsResponse = TProductDetail;
 

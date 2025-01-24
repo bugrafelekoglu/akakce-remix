@@ -1,19 +1,14 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData, useSearchParams } from "@remix-run/react";
+import { useLoaderData, useSearchParams } from "@remix-run/react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui";
-import { Pagination } from "@/components";
+import { ProductListHorizontal } from "./productListHorizontal";
+import { ProductListPaginated } from "./productListPaginated";
+import { CustomPagination } from "@/components/custom";
+
 import { getPageFromUrl } from "@/lib/utils";
-import type { TProductListItem } from "@/types";
 
 import { loader } from "./loader.server";
+
 export { loader };
 
 type TIndexLoader = typeof loader;
@@ -33,49 +28,25 @@ export default function Index() {
   const [searchParams] = useSearchParams();
   const currentPage = getPageFromUrl(searchParams);
 
-  const { horizontalProductList, productListPaginated } =
+  const { productListHorizontal, productListPaginated } =
     useLoaderData<TIndexLoader>();
 
-  const Product = ({ product }: { product: TProductListItem }) => (
-    <Link to={`/product/${product.code}`} key={product.code}>
-      <Card className="w-64 flex flex-col items-center">
-        <CardHeader>
-          <CardTitle>{product.name}</CardTitle>
-          <CardDescription>{product.followCount} Takipçi</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="max-h-32 max-w-32"
-          />
-        </CardContent>
-        <CardFooter>
-          <p>{product.price} TL</p>
-        </CardFooter>
-      </Card>
-    </Link>
-  );
-
   return (
-    <div className="flex gap-8 flex-col">
-      <div className="py-8 px-8 mx-auto bg-white flex flex-row">
-        {horizontalProductList.map((product) => (
-          <Product product={product} key={product.code} />
-        ))}
-      </div>
-      <div className="py-8 px-8 mx-auto bg-white flex flex-row">
-        {productListPaginated.productList.map((product) => (
-          <Product product={product} key={product.code} />
-        ))}
-      </div>
-      <div className="py-8 px-8 mx-auto bg-white flex flex-row gap-8">
-        <Pagination
-          currentPage={currentPage}
-          showPrevious={currentPage > 1}
-          showNext={productListPaginated.nextUrl !== ""}
-        />
-      </div>
+    <div className="flex flex-col items-center gap-12 pt-4">
+      <ProductListHorizontal productList={productListHorizontal} />
+      <ProductListPaginated
+        productList={productListPaginated.productList}
+        containerClassName="w-full items-center"
+        contentClassName="max-w-lg"
+        PaginationComponent={
+          <CustomPagination
+            currentPage={currentPage}
+            hasPrevious={currentPage > 1}
+            pageCount={productListPaginated.pageCount}
+            hasNext={productListPaginated.nextUrl !== ""}
+          />
+        }
+      />
     </div>
   );
 }

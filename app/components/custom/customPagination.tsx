@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 
 import {
   Pagination,
@@ -12,7 +12,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-type CustomPaginationProps = React.ComponentProps<typeof Pagination> & {
+type CustomPaginationProps = ComponentProps<typeof Pagination> & {
   currentPage: number;
   pageCount?: number;
   hasNext: boolean;

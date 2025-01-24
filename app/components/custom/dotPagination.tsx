@@ -23,8 +23,8 @@ export const DotPagination: FC<DotPaginationProps> = ({
           disabled={index === currentIndex}
           onClick={() => onPressIndex(index)}
           className={cn("w-2 h-2 rounded-full", {
-            "bg-foreground": index === currentIndex,
-            "bg-gray-300": index !== currentIndex,
+            "bg-primary": index === currentIndex,
+            "bg-secondary": index !== currentIndex,
           })}
         />
       ))}

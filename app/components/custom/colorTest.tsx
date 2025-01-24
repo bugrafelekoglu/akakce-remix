@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui";
 
 export const ColorTest: FC = () => {
   return (
@@ -90,16 +90,6 @@ export const ColorTest: FC = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Dark Mode Switch */}
-      <div className="fixed bottom-4 right-4">
-        <button
-          onClick={() => document.documentElement.classList.toggle("dark")}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg"
-        >
-          Toggle Dark Mode
-        </button>
-      </div>
     </div>
   );
 };

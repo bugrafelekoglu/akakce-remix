@@ -6,3 +6,5 @@ export * from "./label";
 export * from "./navigation-menu";
 export * from "./pagination";
 export * from "./switch";
+export * from "./toggle";
+export * from "./toggle-group";

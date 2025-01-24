@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import styles from "./tailwind.css?url";
+import { NavBar } from "./components/custom";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles, as: "style" },
@@ -23,6 +24,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <NavBar />
         {children}
         <ScrollRestoration />
         <Scripts />

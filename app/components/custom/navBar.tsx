@@ -1,11 +1,10 @@
 import { ComponentProps, FC } from "react";
-import { Link } from "@remix-run/react";
+import { Link, useMatches } from "@remix-run/react";
 import { Home, PaintBucket } from "lucide-react";
 
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "../ui";
@@ -16,6 +15,11 @@ import { cn } from "@/lib/utils";
 type NavBarProps = ComponentProps<typeof NavigationMenu>;
 
 export const NavBar: FC<NavBarProps> = ({ className, ...props }) => {
+  const matches = useMatches();
+  const parentMatch = matches[matches.length - 1];
+  const pathname = parentMatch?.pathname;
+  console.log(matches);
+
   return (
     <NavigationMenu
       className={cn("max-w-full p-2 bg-chart-1", className)}
@@ -23,17 +27,25 @@ export const NavBar: FC<NavBarProps> = ({ className, ...props }) => {
     >
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link to="/">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Home className="w-4 h-4 mr-2" /> Home
-            </NavigationMenuLink>
+          <Link
+            to="/"
+            className={cn(
+              navigationMenuTriggerStyle(),
+              pathname === "/" && "bg-primary text-secondary"
+            )}
+          >
+            <Home className="w-4 h-4 mr-2" /> Home
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link to="/colors">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <PaintBucket className="w-4 h-4 mr-2" /> Colors
-            </NavigationMenuLink>
+          <Link
+            to="/colors"
+            className={cn(
+              navigationMenuTriggerStyle(),
+              pathname === "/colors" && "bg-primary text-secondary"
+            )}
+          >
+            <PaintBucket className="w-4 h-4 mr-2" /> Colors
           </Link>
         </NavigationMenuItem>
       </NavigationMenuList>

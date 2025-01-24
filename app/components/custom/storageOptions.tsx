@@ -29,7 +29,7 @@ export const StorageOptions: FC<TStorageOptions> = ({
           key={option}
           value={option}
           aria-label={option}
-          className="bg-gray-100 border border-gray-300 rounded-md data-[state=on]:pointer-events-none data-[state=on]:bg-primary data-[state=on]:text-white"
+          className="bg-gray-100 border border-gray-300 rounded-md data-[state=on]:pointer-events-none data-[state=on]:bg-primary data-[state=on]:text-secondary"
         >
           {option}
         </ToggleGroupItem>

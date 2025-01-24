@@ -18,7 +18,6 @@ export const NavBar: FC<NavBarProps> = ({ className, ...props }) => {
   const matches = useMatches();
   const parentMatch = matches[matches.length - 1];
   const pathname = parentMatch?.pathname;
-  console.log(matches);
 
   return (
     <NavigationMenu

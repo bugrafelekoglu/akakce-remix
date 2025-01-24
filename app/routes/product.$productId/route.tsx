@@ -11,6 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  Separator,
 } from "@/components/ui";
 import { PriceTag, Rating, StorageOptions } from "@/components/custom";
 
@@ -68,14 +69,15 @@ export default function Product() {
         <CardContent className="flex justify-center my-2">
           <img src={imageUrl} alt={productName} className="max-h-64 max-w-64" />
         </CardContent>
-        <CardContent className="flex justify-center py-4 bg-gray-200">
+        <CardContent className="flex justify-center py-4 bg-slate-100 dark:bg-slate-900">
           <StorageOptions
             options={storageOptions}
             selected={selectedStorage}
             onSelect={handleStorageSelect}
           />
         </CardContent>
-        <CardFooter className="flex flex-col items-center justify-center bg-secondary p-4">
+        <Separator />
+        <CardFooter className="flex flex-col items-center justify-center bg-slate-200 dark:bg-slate-800 p-4">
           <CardDescription className="font-semibold text-primary">
             {countOfPrices} satıcı içinde kargo dahil en ucuz fiyat seçeneği
           </CardDescription>

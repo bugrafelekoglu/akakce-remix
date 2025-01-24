@@ -23,7 +23,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main className="h-screen p-8">{children}</main>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

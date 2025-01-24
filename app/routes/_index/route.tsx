@@ -32,11 +32,12 @@ export default function Index() {
     useLoaderData<TIndexLoader>();
 
   return (
-    <div className="flex flex-col items-center gap-12">
+    <div className="flex flex-col items-center gap-12 pt-4">
       <ProductListHorizontal productList={productListHorizontal} />
       <ProductListPaginated
         productList={productListPaginated.productList}
-        containerClassName="mb-12 max-w-lg"
+        containerClassName="w-full items-center"
+        contentClassName="max-w-lg"
         PaginationComponent={
           <CustomPagination
             currentPage={currentPage}

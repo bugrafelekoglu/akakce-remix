@@ -1,10 +1,12 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useLoaderData, useSearchParams } from "@remix-run/react";
 
-import { Pagination, ProductListItem } from "@/components/custom";
+import { ProductListHorizontal } from "./productListHorizontal";
+import { ProductListPaginated } from "./productListPaginated";
+import { Pagination } from "@/components/custom";
+
 import { getPageFromUrl } from "@/lib/utils";
 
-import { ProductListHorizontal } from "./productListHorizontal";
 import { loader } from "./loader.server";
 
 export { loader };
@@ -30,28 +32,19 @@ export default function Index() {
     useLoaderData<TIndexLoader>();
 
   return (
-    <>
-      <ProductListHorizontal
-        productList={productListHorizontal}
-        containerClassName="mt-8"
+    <div className="flex flex-col items-center gap-12">
+      <ProductListHorizontal productList={productListHorizontal} />
+      <ProductListPaginated
+        productList={productListPaginated.productList}
+        containerClassName="mb-12 max-w-lg"
+        PaginationComponent={
+          <Pagination
+            currentPage={currentPage}
+            showPrevious={currentPage > 1}
+            showNext={productListPaginated.nextUrl !== ""}
+          />
+        }
       />
-      <div className="py-8 px-8 mx-auto items-center bg-white flex flex-col gap-4">
-        <div className="flex flex-row gap-8">
-          {productListPaginated.productList.map((product) => (
-            <ProductListItem
-              listDirection="vertical"
-              containerClassName="w-56"
-              product={product}
-              key={product.code}
-            />
-          ))}
-        </div>
-        <Pagination
-          currentPage={currentPage}
-          showPrevious={currentPage > 1}
-          showNext={productListPaginated.nextUrl !== ""}
-        />
-      </div>
-    </>
+    </div>
   );
 }

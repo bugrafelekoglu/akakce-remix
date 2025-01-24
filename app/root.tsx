@@ -23,9 +23,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main className="flex flex-col items-center h-screen gap-12">
-          {children}
-        </main>
+        <main className="h-screen p-8">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>

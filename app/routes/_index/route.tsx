@@ -3,7 +3,7 @@ import { useLoaderData, useSearchParams } from "@remix-run/react";
 
 import { ProductListHorizontal } from "./productListHorizontal";
 import { ProductListPaginated } from "./productListPaginated";
-import { Pagination } from "@/components/custom";
+import { CustomPagination } from "@/components/custom";
 
 import { getPageFromUrl } from "@/lib/utils";
 
@@ -38,10 +38,11 @@ export default function Index() {
         productList={productListPaginated.productList}
         containerClassName="mb-12 max-w-lg"
         PaginationComponent={
-          <Pagination
+          <CustomPagination
             currentPage={currentPage}
-            showPrevious={currentPage > 1}
-            showNext={productListPaginated.nextUrl !== ""}
+            hasPrevious={currentPage > 1}
+            pageCount={productListPaginated.pageCount}
+            hasNext={productListPaginated.nextUrl !== ""}
           />
         }
       />

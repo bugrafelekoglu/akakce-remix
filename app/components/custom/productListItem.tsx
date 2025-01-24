@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui";
 import { PriceDropBubble } from "./priceDropBubble";
+import { PriceTag } from "./priceTag";
 
 import { TProductListItem } from "@/services";
 import { cn } from "@/lib/utils";
@@ -72,16 +73,7 @@ export const ProductListItem: FC<ProductListItemProps> = ({
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col  ">
-          <div className="text-xl font-bold flex items-baseline">
-            {new Intl.NumberFormat("tr-TR", {
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
-            }).format(Math.floor(product.price))}
-            <span className="text-sm font-semibold">
-              ,{String(Math.round((product.price % 1) * 100)).padStart(2, "0")}{" "}
-              TL
-            </span>
-          </div>
+          <PriceTag price={product.price} />
           <span className="flex flex-row items-center text-gray-400 text-xs">
             {product.countOfPrices} satıcı
             <ChevronRight className="w-4 h-4" />
